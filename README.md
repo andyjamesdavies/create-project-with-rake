@@ -15,3 +15,11 @@ You should only need the Rakefile for this to work as it will clone the latest v
 Command example:
 
     > rake create:backbonejs project=example_project
+
+To find out all the commands available run the following:
+    > rake -T
+
+#Current commands:
+    > create:backbonejs
+    > create:html5boilerplate
+    > create:twitterBootstrap

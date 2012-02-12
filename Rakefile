@@ -1,4 +1,26 @@
 namespace :create do
+  
+  def buildFromGithub(target_url, project_name) 
+      if project_name != nil
+        this_dir = Dir.pwd
+        dir_name = this_dir + '/' + project_name
+        tmp_dir = dir_name + "/tmp"
+                  
+        Dir.mkdir(dir_name)
+        system("echo directory " + dir_name + " created")
+                  
+        system("git clone " + target_url + " " + tmp_dir)
+        system("git archive --remote=" + tmp_dir + " master | tar -x -C " + dir_name)
+        system("rm -rf " + tmp_dir)
+        system("rm " + dir_name + "/.gitattributes " + dir_name + "/.gitignore")
+                  
+        system("echo Create Complete!")
+      else
+        system("echo ERROR: you must provide a project name by adding project\=\{project_name\}")
+      end
+  end
+  
+  desc "create a basic backbonejs folder structure using require.js"
   task :backbonejs do
     github_addr = "git@github.com:andyjamesdavies/create-project-with-rake.git"
     jquery_ver = "1.7.1"
@@ -22,7 +44,7 @@ namespace :create do
       system("git archive --remote=" + tmp_dir + " master | tar -x -C " + tmp2_dir)      
       
       system("cp -R " + tmp2_dir + "/templates/backbonejs/* " + dir_name)
-      
+     
       system("rm -rf " + tmp_dir + " " + tmp2_dir)
       
       libs_dir = dir_name + "/libs"
@@ -34,9 +56,26 @@ namespace :create do
       system("curl http://requirejs.org/docs/release/" + require_ver + "/minified/require.js > " + libs_dir + "/require.min.js")
       system("curl http://requirejs.org/docs/release/" + require_ver + "/minified/order.js > " + dir_name + "/assets/js/order.js")
       
+      system("echo Create Complete!")
     else 
       system("echo ERROR: you must provide a project name by adding project\=\{project_name\}")
     end
+  end
+  
+  desc "create html5 boilerplate template from the github project"
+  task :html5boilerplate do
+    target_url = "https://github.com/h5bp/html5-boilerplate.git"
+    project_name = ENV['project']
+    
+    buildFromGithub(target_url, project_name)
+  end
+  
+  desc "create twitter bootstrap project from the github repo"
+  task :twitterBootstrap do
+    target_url = "https://github.com/twitter/bootstrap.git"
+    project_name = ENV['project']
+     
+    buildFromGithub(target_url, project_name) 
   end
 end
   
