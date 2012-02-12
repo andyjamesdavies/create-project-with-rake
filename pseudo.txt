@@ -19,7 +19,7 @@ move down a folder:
   > cd ../
 
 move template to current folder:
-  > mv tmp2/templates/backbonejs/* ./* 
+  > cp -R tmp2/templates/backbonejs/* ./* 
 
 remove tmp folders:
   > rm -rf tmp/ tmp2/
