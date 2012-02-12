@@ -1,6 +1,6 @@
-#Project Scaffolding
+#Create project
 
-The main aim of this project is to allow for quick rake commands to scaffold different types of web dev projects based on a project template.
+The main aim of this project is to allow for quick rake commands to create different types of web dev projects based on a project template.
 
 If like me you find yourself spending more than 10 seconds creating a project each time you may find this useful. 
 
@@ -14,4 +14,4 @@ You should only need the Rakefile for this to work as it will clone the latest v
 
 Command example:
 
-    > rake scaffold:backbonejs project=example_project
+    > rake create:backbonejs project=example_project

@@ -1,6 +1,6 @@
-namespace :scaffold do
+namespace :create do
   task :backbonejs do
-    github_addr = "git@github.com:andyjamesdavies/project-scaffolding-with-rake.git"
+    github_addr = "git@github.com:andyjamesdavies/create-project-with-rake.git"
     jquery_ver = "1.7.1"
     require_ver = "1.0.5"
     project_name = ENV['project']
