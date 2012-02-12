@@ -1,0 +1,43 @@
+
+make project folder:
+  > mkdir {project name}
+  > cd {project name}/
+
+Clone templates repo into tmp:
+  > git clone git@github.com:andyjamesdavies/project-scaffolding-with-rake.git tmp
+
+make archive folder:
+  > mkdir tmp2/  
+  
+move into tmp:
+  > cd tmp/
+  
+create archive: 
+  > git archive master | tar -x -C ../tmp2
+  
+move down a folder:
+  > cd ../
+
+move template to current folder:
+  > mv tmp2/templates/backbonejs/* ./* 
+
+remove tmp folders:
+  > rm -rf tmp/ tmp2/
+ 
+make libs folder:
+  > mkdir libs/
+   
+download jquery:
+  > curl http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js > libs/jquery.min.js
+
+download underscore:
+  > curl http://documentcloud.github.com/underscore/underscore-min.js > libs/underscore.min.js
+  
+download backbonejs:
+  > curl http://documentcloud.github.com/backbone/backbone-min.js > libs/backbone.min.js
+  
+download requirejs:
+  > curl http://requirejs.org/docs/release/1.0.5/minified/require.js > libs/require.min.js
+  
+download orderjs: 
+  > curl http://requirejs.org/docs/release/1.0.5/minified/order.js > assets/js/order.js
