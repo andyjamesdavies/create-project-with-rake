@@ -1,6 +1,8 @@
 namespace :scaffold do
   task :backbonejs do
     github_addr = "git@github.com:andyjamesdavies/project-scaffolding-with-rake.git"
+    jquery_ver = "1.7.1"
+    require_ver = "1.0.5"
     project_name = ENV['project']
     
     if project_name != nil
@@ -26,17 +28,11 @@ namespace :scaffold do
       libs_dir = dir_name + "/libs"
       Dir.mkdir(libs_dir)
       
-      system("curl http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js > " + libs_dir +  "/jquery.min.js") 
-      
+      system("curl http://ajax.googleapis.com/ajax/libs/jquery/" + jquery_ver + "/jquery.min.js > " + libs_dir +  "/jquery.min.js") 
       system("curl http://documentcloud.github.com/underscore/underscore-min.js > " + libs_dir + "/underscore.min.js")
-      
       system("curl http://documentcloud.github.com/backbone/backbone-min.js > " + libs_dir + "/backbone.min.js")
-      
-      system("curl http://requirejs.org/docs/release/1.0.5/minified/require.js > " + libs_dir + "/require.min.js")
-      
-      system("curl http://requirejs.org/docs/release/1.0.5/minified/order.js > " + dir_name + "/assets/js/order.js")
-      
-      system("mv " + dir_name + " ../" + project_name);
+      system("curl http://requirejs.org/docs/release/" + require_ver + "/minified/require.js > " + libs_dir + "/require.min.js")
+      system("curl http://requirejs.org/docs/release/" + require_ver + "/minified/order.js > " + dir_name + "/assets/js/order.js")
       
     else 
       system("echo ERROR: you must provide a project name by adding project\=\{project_name\}")
