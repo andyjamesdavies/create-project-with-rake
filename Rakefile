@@ -1,16 +1,22 @@
 namespace :create do
   
-  def buildFromGithub(target_url, project_name) 
+  def buildFromGithub(target_url, project_name, version) 
       if project_name != nil
         this_dir = Dir.pwd
         dir_name = this_dir + '/' + project_name
         tmp_dir = dir_name + "/tmp"
+          
+        if version
+          this_version = version
+        else 
+          this_version = 'master'
+        end
                   
         Dir.mkdir(dir_name)
         system("echo directory " + dir_name + " created")
                   
         system("git clone " + target_url + " " + tmp_dir)
-        system("git archive --remote=" + tmp_dir + " master | tar -x -C " + dir_name)
+        system("git archive --remote=" + tmp_dir + " " + this_version + " | tar -x -C " + dir_name)
         system("rm -rf " + tmp_dir)
         system("rm " + dir_name + "/.gitattributes " + dir_name + "/.gitignore")
                   
@@ -65,17 +71,19 @@ namespace :create do
   desc "create html5 boilerplate template from the github project"
   task :html5boilerplate do
     target_url = "https://github.com/h5bp/html5-boilerplate.git"
+    version = "v3.0.1stripped"
     project_name = ENV['project']
     
-    buildFromGithub(target_url, project_name)
+    buildFromGithub(target_url, project_name, version)
   end
   
   desc "create twitter bootstrap project from the github repo"
   task :twitterBootstrap do
     target_url = "https://github.com/twitter/bootstrap.git"
+    version = "v2.0.0"
     project_name = ENV['project']
      
-    buildFromGithub(target_url, project_name) 
+    buildFromGithub(target_url, project_name, version) 
   end
 end
   
