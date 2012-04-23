@@ -77,6 +77,15 @@ namespace :create do
     buildFromGithub(target_url, project_name, version)
   end
   
+  desc "create backboneJS-AMD-Boilerplate project from the github repo"
+    task :backboneBoilerplate do
+      target_url = "https://github.com/andyjamesdavies/BackboneJS-AMD-Boilerplate.git"
+      version = "v1.0.1"
+      project_name = ENV['project']
+       
+      buildFromGithub(target_url, project_name, version) 
+    end
+  
   desc "create twitter bootstrap project from the github repo"
   task :twitterBootstrap do
     target_url = "https://github.com/twitter/bootstrap.git"
